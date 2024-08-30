@@ -21,7 +21,8 @@ int start(){
 
   if(option != 1 && option != 2 && option != 3){
     cout << "Invalid, please choose option 1, 2, or 3" << endl;
-    start();
+    return start();
+
   }else{
     return option;
   }
@@ -37,7 +38,7 @@ int lP(){
   cin >> l;
   if(l != 1 && l != 2){
     cout << "Please enter a valid choice 1 or 2." << endl;
-    lP();
+    return lP();
 
   }else{
     return l;
@@ -60,9 +61,6 @@ char generateRandomCharacter() {
 }
 
 int generateRandomNumber(int min, int max){
-  srand(static_cast<unsigned int>(time(0)));
-
-    
   return min + rand() % (max - min + 1);
 
 }
@@ -70,7 +68,7 @@ int generateRandomNumber(int min, int max){
 
 string createPassword(int type , int size){
 
-  string newPassword;
+  string newPassword(size, ' ');
 
   if(type == 1){
     for(int i = 0; i < size; i++){
@@ -126,7 +124,6 @@ string createPassword(int type , int size){
 
     
   }else if(type == 3){
-    string password = "";
 
     cout << "What is your name ?" << endl;
     string name ;
@@ -136,7 +133,7 @@ string createPassword(int type , int size){
     int s = name.size() / 2;
 
     for(int i = 0 ; i < s; i ++){
-      password[i] = name[i];
+      newPassword[i] = name[i];
       currs++;
 
 
@@ -149,11 +146,11 @@ string createPassword(int type , int size){
     for(int i = currs + 1; i < size; i++){
       int s = generateRandomNumber(min, max);
       string g = to_string(s);
-      password[i] = g[0];
+      newPassword[i] = g[0];
 
     }
 
-    return password;
+    return newPassword;
 
 
 
