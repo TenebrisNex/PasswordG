@@ -78,49 +78,28 @@ string createPassword(int type , int size){
     return newPassword;
 
   }else if(type == 2){
-
-    cout << "What is your first name ?" << endl;
+    cout << "What is your first name?" << endl;
     string name;
     cin >> name;
     int currs = 0;
 
-
-    for(int i = 0; i < name.size(); i++){
-      if(name.size() % 2 == 0){
-        newPassword[i] = name[i];
-        currs++;
-      
-      }else{
-        char randomChar = generateRandomCharacter();
-        newPassword[i] = generateRandomCharacter();
-        currs++;
-      }
-      
+    for(int i = 0; i < name.size() && currs < size; i++){
+      newPassword[currs++] = name[i];
     }
 
-    if(currs == size){
-      return newPassword;
-
-      
-    }else{
+    if(currs < size){
       cout << "Pick two numbers (a min and a max)" << endl;
       int min, max;
-
       cin >> min >> max;
 
-      for(int i = currs + 1; i < size; i++){
+      for(int i = currs; i < size; i++){
         int s = generateRandomNumber(min, max);
-        string g = to_string(s);
-        newPassword[i] = g[0];
-
-
+        newPassword[i] = to_string(s)[0];
       }
-      
-
-
-
     }
     return newPassword;
+
+   
 
     
   }else if(type == 3){
@@ -130,24 +109,18 @@ string createPassword(int type , int size){
     cin >> name;
     int currs = 0;
 
-    int s = name.size() / 2;
-
-    for(int i = 0 ; i < s; i ++){
-      newPassword[i] = name[i];
-      currs++;
-
-
-
+    for(int i = 0; i < name.size() && currs < size / 2; i++){
+      newPassword[currs++] = name[i];
     }
+
+
     cout << "Pick two numbers (a min and a max)" << endl;
     int min, max;
     cin >> min, max;
 
-    for(int i = currs + 1; i < size; i++){
+    for(int i = currs; i < size; i++){
       int s = generateRandomNumber(min, max);
-      string g = to_string(s);
-      newPassword[i] = g[0];
-
+      newPassword[i] = to_string(s)[0];
     }
 
     return newPassword;
@@ -157,6 +130,8 @@ string createPassword(int type , int size){
 
   }
   
+  return "";  
+  
 }
 
 
@@ -165,7 +140,7 @@ int main(){
   srand(static_cast<unsigned int>(time(0)));
   int option = start();
   int length = lP();
-  
+
   string password = createPassword(option, length);
     
   cout << "Your generated password is: " << password << endl;
