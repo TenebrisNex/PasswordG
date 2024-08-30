@@ -162,19 +162,13 @@ string createPassword(int type , int size){
 
 
 int main(){
+  srand(static_cast<unsigned int>(time(0)));
   int option = start();
   int length = lP();
-
-  createPassword(option, length);
-
   
+  string password = createPassword(option, length);
+    
+  cout << "Your generated password is: " << password << endl;
 
-  
-
-
- 
-
-  
-
-
+  return 0;
 }
