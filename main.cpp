@@ -126,7 +126,38 @@ string createPassword(int type , int size){
 
     
   }else if(type == 3){
-    
+    string password = "";
+
+    cout << "What is your name ?" << endl;
+    string name ;
+    cin >> name;
+    int currs = 0;
+
+    int s = name.size() / 2;
+
+    for(int i = 0 ; i < s; i ++){
+      password[i] = name[i];
+      currs++;
+
+
+
+    }
+    cout << "Pick two numbers (a min and a max)" << endl;
+    int min, max;
+    cin >> min, max;
+
+    for(int i = currs + 1; i < size; i++){
+      int s = generateRandomNumber(min, max);
+      string g = to_string(s);
+      password[i] = g[0];
+
+    }
+
+    return password;
+
+
+
+
   }
   
 }
